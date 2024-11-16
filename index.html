@@ -6,8 +6,7 @@
     <title>Kalaakshethra</title>
     <style>
         /* Reset and general styling */
-        * 
-        {
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -21,20 +20,61 @@
             color: #333;
             margin: 0;
             padding: 0;
-            background-image: url('https://files.yappe.in/place/full/pulimathoor-mahadeva-temple-9984549.webp'); /* Replace with your image URL */
-            background-size: cover; /* Ensures the image covers the entire screen */
-            background-position: center; /* Center the image */
-            background-repeat: no-repeat; /* Prevent tiling of the image */
-        }
-        h2, h3 {
-            color: #4a90e2;
+            background-image: url('https://files.yappe.in/place/full/pulimathoor-mahadeva-temple-9984549.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            flex-direction: column;
         }
 
+        /* Header styling */
+        h1 {
+            color: #ffc258; /* Creme color */
+            font-size: 80px;
+            text-align: center;
+            margin-bottom: 10px;
+            font-family: keraleeyam;
+            font-weight: normal;
+            text-shadow: 5px 5px 10px #060606;
+        }
+        h3 {
+            color:#400a76
+        }
+        
+        h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 2px 5px #060606;
+
+        }
+
+        /* Navigation bar styling */
+        .navbar {
+            width: 100%;
+            background-color: #f6f99b;
+            overflow: hidden;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
+        .navbar a {
+            display: inline-block;
+            color: rgb(31, 0, 107);
+            padding: 14px 50px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            font-family: Bahnschrift SemiBold;
+        }
+        .navbar a:hover {
+            background-color: #ffc320;
+        }
 
         /* Form styling */
         #checkForm {
             background-color: #ffffff;
-            padding: 20px;
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             max-width: 400px;
@@ -85,8 +125,21 @@
     </style>
 </head>
 <body>
+    <h1>മഹാദേവ കലാക്ഷേത്ര</h1>
+    <h2>Chenda Class Student Portal</h2>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Class</a>
+        <a href="#">Fee Details</a>
+        <a href="#">Contact</a>
+        <a href="#">Time</a>
+    </div>
+
     <div id="checkForm" class="input-name">
-        <h2>Student's Pending Fee Report</h2>
+        <h3>Student's Pending Fee Report</h3>
+        <br>
         <form>
             <label for="studentId">Select Student Name:</label>
             <select id="studentId" required>
@@ -157,6 +210,7 @@
                 <option value="DEVANAND V S">DEVANAND V S</option>
                 <option value="VAIBHAV V">VAIBHAV V</option>
                 <option value="PRATHISH S">PRATHISH S</option>
+                <!-- More options... -->
             </select>
             <button type="button" onclick="checkReport()">Check Report</button>
         </form>
@@ -169,7 +223,7 @@
 
     <script>
         const pdfFiles = {
-    "ABHAYJITH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/main/ABHAYJITH.pdf",
+        "ABHAYJITH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/main/ABHAYJITH.pdf",
         "ABHIJITH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/main/ABHIJITH.pdf",
         "ABHIMANYU": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/main/ABHIMANYU.pdf",
         "ABHINAV KIRAN": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/main/ABHINAV%20KIRAN.pdf",
@@ -235,8 +289,8 @@
         "DEVANAND V S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/main/DEVANAND%20V%20S.pdf",
         "VAIBHAV V": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/main/VAIBHAV%20V.pdf",
         "PRATHISH S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/main/PRATHISH%20S.pdf",
-        // Add remaining student entries here...
-    };
+            // Add remaining student entries here...
+        };
 
         function checkReport() {
             const studentId = document.getElementById("studentId").value;
