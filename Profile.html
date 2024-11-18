@@ -5,11 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Profile</title>
     <link rel="stylesheet" href="Stylesprof.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<style>
+    .footer {
+        position: absolute;
+        margin-bottom: 0;
+        width: 100%; /* Make the footer span the full width */
+        text-align: center;
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+    }
+</style>
 </head>
 <body>
     <nav class="navbar">
         <ul>
-            <li><a href="index.html">Back</a></li>
+            <li><a href="Homecode.html">Back</a></li>
             
         </ul>
     </nav>
@@ -87,50 +100,50 @@
                 <option value="VAIBHAV V">VAIBHAV V</option>
                 <option value="PRATHISH S">PRATHISH S</option>
                 </select>
-                <button id="search-button">Search</button>
+                <button class="Search-b" id="search-button">Search</button>
             </div>
             <br>
             <br>
             <!-- Photo Box -->
             <div class="field-box photo-box">
-                <img src="RK-Web.jpg" alt="Student Photo">
+                <img src="" alt="Student Photo">
             </div>
             <!-- Student Details -->
             <div class="field-box">
                 <strong>Name:</strong>
-                <div id="student-name" class="detail-box">John Doe</div>
+                <div id="student-name" class="detail-box"></div>
             </div>
             <div class="field-box">
                 <strong>Class:</strong>
-                <div id="student-class" class="detail-box">10th Grade</div>
+                <div id="student-class" class="detail-box"></div>
             </div>
             <div class="field-box">
                 <strong>Admission Date:</strong>
-                <div id="admission-date" class="detail-box">01-Jan-2022</div>
+                <div id="admission-date" class="detail-box"></div>
             </div>
             <div class="field-box">
                 <strong>Admission No:</strong>
-                <div id="admission-no" class="detail-box">A123456</div>
+                <div id="admission-no" class="detail-box"></div>
             </div>
             <div class="field-box">
                 <strong>Admission Fee:</strong>
-                <div id="admission-fee" class="detail-box">₹20,000</div>
+                <div id="admission-fee" class="detail-box"></div>
             </div>
             <div class="field-box">
                 <strong>Total Months:</strong>
-                <div id="total-months" class="detail-box">12</div>
+                <div id="total-months" class="detail-box"></div>
             </div>
             <div class="field-box">
                 <strong>Total Paid Months:</strong>
-                <div id="paid-months" class="detail-box">8</div>
+                <div id="paid-months" class="detail-box"></div>
             </div>
             <div class="field-box">
                 <strong>Total Pending Months:</strong>
-                <div id="pending-months" class="detail-box">4</div>
+                <div id="pending-months" class="detail-box"></div>
             </div>
             <div class="field-box">
                 <strong>Total Pending Fees (₹):</strong>
-                <div id="pending-fees" class="detail-box">₹8,000</div>
+                <div id="pending-fees" class="detail-box"></div>
             </div>
             <!-- Action Buttons -->
             <div class="button-box">
@@ -138,6 +151,38 @@
                 <button id="pay-fees">Pay Pending Fees</button>
             </div>
         </div>
+    </div>
+    <script>
+        // Function to handle file input
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: "array" });
+
+                // Assuming the first sheet contains the relevant data
+                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                const sheetData = XLSX.utils.sheet_to_json(firstSheet);
+
+                // Update HTML elements with the data from the first row
+                if (sheetData.length > 0) {
+                    const row = sheetData[0]; // Assuming the first row contains student data
+
+                    document.getElementById("student-name").textContent = row["Name"] || "N/A";
+                    document.getElementById("student-class").textContent = row["Class"] || "N/A";
+                    document.getElementById("admission-date").textContent = row["Admission Date"] || "N/A";
+                    document.getElementById("admission-no").textContent = row["Admission No"] || "N/A";
+                    document.getElementById("pending-fees").textContent = row["Pending Fees"] || "N/A";
+                }
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+    </script>
+    <div class="footer">
+    <input type="file" id="excelFile" accept=".xlsx, .xls" onchange="handleFileUpload(event)">
     </div>
 </body>
 </html>
