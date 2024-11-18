@@ -7,25 +7,21 @@
     <link rel="stylesheet" href="Stylesprof.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
-       .footer {
-        position: absolute;
-        margin-bottom: 0;
-        width: 100%; /* Make the footer span the full width */
-        text-align: center;
-        background-color: #333;
-        color: white;
-        padding: 10px 0;
-    }
+        .footer {
+            position: absolute;
+            margin-bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <ul>
-            <li><a href="index.html">Back</a></li>
-
-            <!-- File Upload -->
-            <li class="right"><input type="file" id="excelFile" accept=".xlsx, .xls" onchange="loadDropdown(event)"></li>
-
+            <li><a href="Homecode.html">Back</a></li>
         </ul>
     </nav>
      
@@ -47,72 +43,68 @@
     <!-- Student Details -->
     <h3>Student Information</h3>
     <div class="field-box">
-                <strong>Name:</strong>
-                <div id="student-name" class="detail-box"></div>
-            </div>
-            <div class="field-box">
-                <strong>Class:</strong>
-                <div id="student-class" class="detail-box"></div>
-            </div>
-            <div class="field-box">
-                <strong>Admission Date:</strong>
-                <div id="admission-date" class="detail-box"></div>
-            </div>
-            <div class="field-box">
-                <strong>Admission No:</strong>
-                <div id="admission-no" class="detail-box"></div>
-            </div>
-            <div class="field-box">
-                <strong>Admission Fee:</strong>
-                <div id="admission-fee" class="detail-box"></div>
-            </div>
-            <div class="field-box">
-                <strong>Total Months:</strong>
-                <div id="total-months" class="detail-box"></div>
-            </div>
-            <div class="field-box">
-                <strong>Total Paid Months:</strong>
-                <div id="paid-months" class="detail-box"></div>
-            </div>
-            <div class="field-box">
-                <strong>Total Pending Months:</strong>
-                <div id="pending-months" class="detail-box"></div>
-            </div>
-            <div class="field-box">
-                <strong>Total Pending Fees (₹):</strong>
-                <div id="pending-fees" class="detail-box"></div>
-            </div>
+        <strong>Name:</strong>
+        <div id="student-name" class="detail-box"></div>
+    </div>
+    <div class="field-box">
+        <strong>Class:</strong>
+        <div id="student-class" class="detail-box"></div>
+    </div>
+    <div class="field-box">
+        <strong>Admission Date:</strong>
+        <div id="admission-date" class="detail-box"></div>
+    </div>
+    <div class="field-box">
+        <strong>Admission No:</strong>
+        <div id="admission-no" class="detail-box"></div>
+    </div>
+    <div class="field-box">
+        <strong>Admission Fee:</strong>
+        <div id="admission-fee" class="detail-box"></div>
+    </div>
+    <div class="field-box">
+        <strong>Total Months:</strong>
+        <div id="total-months" class="detail-box"></div>
+    </div>
+    <div class="field-box">
+        <strong>Total Paid Months:</strong>
+        <div id="paid-months" class="detail-box"></div>
+    </div>
+    <div class="field-box">
+        <strong>Total Pending Months:</strong>
+        <div id="pending-months" class="detail-box"></div>
+    </div>
+    <div class="field-box">
+        <strong>Total Pending Fees (₹):</strong>
+        <div id="pending-fees" class="detail-box"></div>
+    </div>
 
     <script>
         let studentData = []; // Store Excel data
 
-        // Load Dropdown from Excel
-        function loadDropdown(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
+        // Load Excel file and populate dropdown
+        function loadExcelFile() {
+            fetch('Chenda.xlsx') // Replace 'Chenda.xlsx' with the actual file path
+                .then(response => response.arrayBuffer())
+                .then(data => {
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                    studentData = XLSX.utils.sheet_to_json(firstSheet);
 
-            reader.onload = function (e) {
-                const data = new Uint8Array(e.target.result);
-                const workbook = XLSX.read(data, { type: "array" });
+                    const dropdown = document.getElementById("student-name-dropdown");
+                    dropdown.innerHTML = '<option value="">Select a Student</option>'; // Reset dropdown
 
-                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                studentData = XLSX.utils.sheet_to_json(firstSheet); // Load data into global variable
-
-                const dropdown = document.getElementById("student-name-dropdown");
-                dropdown.innerHTML = '<option value="">Select a Student</option>'; // Reset dropdown
-
-                // Populate dropdown with student names
-                studentData.forEach((row, index) => {
-                    if (row["Name"]) {
-                        const option = document.createElement("option");
-                        option.value = index; // Use index to track the row in Excel data
-                        option.textContent = row["Name"];
-                        dropdown.appendChild(option);
-                    }
-                });
-            };
-
-            reader.readAsArrayBuffer(file);
+                    // Populate dropdown with student names
+                    studentData.forEach((row, index) => {
+                        if (row["Name"]) {
+                            const option = document.createElement("option");
+                            option.value = index; // Use index to track the row in Excel data
+                            option.textContent = row["Name"];
+                            dropdown.appendChild(option);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error loading Excel file:', error));
         }
 
         // Search Student and Display Details
@@ -135,6 +127,9 @@
                 alert("Please select a student from the dropdown.");
             }
         }
+
+        // Load Excel data when the page loads
+        window.onload = loadExcelFile;
     </script>
 </body>
 </html>
