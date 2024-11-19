@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f7f9fc;
+    background: linear-gradient(to top, #c3ccff, #f6e7b5);
     color: #333;
     font-family: bahnschrift;
 }
@@ -49,11 +49,13 @@ body {
 
 h1 {
     text-align: center;
-    color: #2c3e50;
+    color: #0d5cab;
     margin-top: 20px;
 }
 h3 {
     text-align: center;
+    color: #080256;
+    font-size: 22px;
 }
 
 
@@ -79,12 +81,30 @@ h3 {
 .file-upload {
     justify-content: center;
 
+}/*
+.photo-box {
+    background: #ffffff;
+    padding: 20px 2px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    /*align-items: center;   /* Vertical centering */
+    /*background-color: #ffffff;  
+}
+*/
+
+.img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px; /* Optional for rounded image corners */
+    
 }
 
 /* Field Box */
 .field-box {
     flex: 1 1 calc(50% - 20px);
-    background: #f9f9f9;
+    background: #ffffff;
     padding: 25px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -98,8 +118,8 @@ h3 {
 
 /* Detail Box */
 .detail-box {
-    font-size: 1.1em;
-    color: #555;
+    font-size: 1.15em;
+    color: #030dca;
     padding: 12px;
     text-align: center;
     background-color: #ffffff;
@@ -173,7 +193,7 @@ h3 {
 }
 
 #view-report a, #pay-fees a  {
-    color: white; /* White text inside the link */
+    color: rgb(255, 255, 255); /* White text inside the link */
     text-decoration: none; /* Remove underline */
 }
 
@@ -184,7 +204,7 @@ h3 {
 button {
     padding:5px;
     color:#ffffff;
-    background-color: #004d99;
+    background-color: #009917;
     font-weight:bold;
     border-radius: 5px;
     font-size: 1em;
