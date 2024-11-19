@@ -1,0 +1,26 @@
+.news {    
+    background-color: #fff022;
+    text-align: left; /* Align text to the left */
+    color: #041739;
+    padding: 40px 125px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.news-latest {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 20px; /* Space below the heading */
+    color: #041739;
+}
+
+.news-sub {
+    list-style-type: armenian; /* Use bullet symbols */
+    padding-left: 40px; /* Add space before the bullet points */
+}
+
+.news li {
+    font-size: 16px;
+    line-height: 1.8; /* Increase line spacing for readability */
+}

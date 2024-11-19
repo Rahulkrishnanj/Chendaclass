@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalaakshethra</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.17.269/pdf.min.js"></script>
+    <link rel="stylesheet" href="Stylereport.css">
+    <link rel="stylesheet" href="navbar.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="#" class="left">Back</a>
+        <a href="#" class="right">Home</a>
+    </div>
+    <br>  
+    <h2>Chenda Class Student Portal</h2>
+    <br>
+
+    <div id="checkForm" class="input-name">
+        <h3>Student's Pending Fee Report PDF</h3>
+        <br>
+        <br>
+        <h4>Download Here</h4>
+        <h5>⇓</h5>
+        <form>
+            <label for="studentId">Select Student Name:</label>
+            <select id="studentId" required>
+                <option value="" disabled selected>Select Student Name</option>
+                <option value="ABHAYJITH">ABHAYJITH</option>
+                <option value="ABHIJITH">ABHIJITH</option>
+                <option value="ABHIMANYU">ABHIMANYU</option>
+                <option value="ABHINAV KIRAN">ABHINAV KIRAN</option>
+                <option value="ADIDEV S G">ADIDEV S G</option>
+                <option value="ADIRATH">ADIRATH</option>
+                <option value="ADITHAYAN A S">ADITHAYAN A S</option>
+                <option value="ADITHYA A ABHILASH">ADITHYA A ABHILASH</option>
+                <option value="ADITHYAN A">ADITHYAN A</option>
+                <option value="ADITHYAN B S">ADITHYAN B S</option>
+                <option value="ADITHYAN R S">ADITHYAN R S</option>
+                <option value="ADITHYAN S M">ADITHYAN S M</option>
+                <option value="ADWAITH">ADWAITH</option>
+                <option value="ADWAITH R P">ADWAITH R P</option>
+                <option value="AKHIL B">AKHIL B</option>
+                <option value="AKHIL SANTHOSH">AKHIL SANTHOSH</option>
+                <option value="ANANTHAKRISHNAN S">ANANTHAKRISHNAN S</option>
+                <option value="ANU">ANU</option>
+                <option value="ARAV SHANKAR A">ARAV SHANKAR A</option>
+                <option value="ARAVIND">ARAVIND</option>
+                <option value="ARJUN R">ARJUN R</option>
+                <option value="ARUSH P R">ARUSH P R</option>
+                <option value="ARYA A">ARYA A</option>
+                <option value="ASWANTH B">ASWANTH B</option>
+                <option value="ASWIN R">ASWIN R</option>
+                <option value="ASWIN V">ASWIN V</option>
+                <option value="ATHUL A M">ATHUL A M</option>
+                <option value="ATHUL A S">ATHUL A S</option>
+                <option value="DEVA NAND PRADEEP">DEVA NAND PRADEEP</option>
+                <option value="DEVA NARAYANAN">DEVA NARAYANAN</option>
+                <option value="DEVANANDA P">DEVANANDA P</option>
+                <option value="DEVA NAND M R">DEVA NAND M R</option>
+                <option value="DIPIN D">DIPIN D</option>
+                <option value="DRUV HARI M">DRUV HARI M</option>
+                <option value="DYAN HARI M">DYAN HARI M</option>
+                <option value="GURUMITHRAN D L">GURUMITHRAN D L</option>
+                <option value="JANADATHAN D L">JANADATHAN D L</option>
+                <option value="KASHINADH C S SREEKUTTY">KASHINADH C S SREEKUTTY</option>
+                <option value="KASHINADH S N">KASHINADH S N</option>
+                <option value="KASHINATH S S">KASHINATH S S</option>
+                <option value="MADHAV A S">MADHAV A S</option>
+                <option value="MANOJ">MANOJ</option>
+                <option value="MIDHUN">MIDHUN</option>
+                <option value="NIHARA R B">NIHARA R B</option>
+                <option value="NIRANJAN B A">NIRANJAN B A</option>
+                <option value="RAHUL KRISHNA">RAHUL KRISHNA</option>
+                <option value="RAJATH KRISHNA">RAJATH KRISHNA</option>
+                <option value="SABARI S">SABARI S</option>
+                <option value="SANJAY SANTHOSH">SANJAY SANTHOSH</option>
+                <option value="SANUSH">SANUSH</option>
+                <option value="SARGA C S">SARGA C S</option>
+                <option value="SIDHARTH P NAIR">SIDHARTH P NAIR</option>
+                <option value="SIDHARTH S">SIDHARTH S</option>
+                <option value="SIVADATH B">SIVADATH B</option>
+                <option value="SIVARATH L">SIVARATH L</option>
+                <option value="SOORYANARAYANAN">SOORYANARAYANAN</option>
+                <option value="SREEHARI A M">SREEHARI A M</option>
+                <option value="SREEHARI G M">SREEHARI G M</option>
+                <option value="THEJAS">THEJAS</option>
+                <option value="VAISHNAV M C">VAISHNAV M C</option>
+                <option value="VAISHNAV V">VAISHNAV V</option>
+                <option value="VIDHUKRISHNAN P">VIDHUKRISHNAN P</option>
+                <option value="VIGNESH S A">VIGNESH S A</option>
+                <option value="DEVANAND V S">DEVANAND V S</option>
+                <option value="VAIBHAV V">VAIBHAV V</option>
+                <option value="PRATHISH S">PRATHISH S</option>
+            </select>
+            <!-- Buttons for Download and View Report -->
+            <button type="button" onclick="downloadReport()">Download</button>
+            <button type="button" onclick="viewReport()">View Report</button>
+        </form>
+
+        <!-- PDF Preview Section -->
+        <div id="pdfSection" style="display: none;">
+            <h3 style="color: purple;">Pending Fee Report</h3>
+            <iframe id="pdfViewer" src="" frameborder="0" style="width: 100%; height: 500px; border: 1px solid #ccc; border-radius: 10px;"></iframe>
+        </div>
+    </div>
+
+
+    <script>
+        const pdfFiles = {
+        "ABHAYJITH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ABHAYJITH.pdf",
+        "ABHIJITH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ABHIJITH.pdf",
+        "ABHIMANYU": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ABHIMANYU.pdf",
+        "ABHINAV KIRAN": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ABHINAV%20KIRAN.pdf",
+        "ADIDEV S G": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ADIDEV%20S%20G.pdf",
+        "ADIRATH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ADIRATH.pdf",
+        "ADITHAYAN A S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ADITHAYAN%20A%20S.pdf",
+        "ADITHYA A ABHILASH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ADITHYA%20A%20ABHILASH.pdf",
+        "ADITHYAN A": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ADITHYAN%20A.pdf",
+        "ADITHYAN B S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ADITHYAN%20B%20S.pdf",
+        "ADITHYAN R S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ADITHYAN%20R%20S.pdf",
+        "ADITHYAN S M": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ADITHYAN%20S%20M.pdf",
+        "ADWAITH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ADWAITH.pdf",
+        "ADWAITH R P": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ADWAITH%20R%20P.pdf",
+        "AKHIL B": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/AKHIL%20B.pdf",
+        "AKHIL SANTHOSH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/AKHIL%20SANTHOSH.pdf",
+        "ANANTHAKRISHNAN S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ANANTHAKRISHNAN%20S.pdf",
+        "ANU": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ANU.pdf",
+        "ARAV SHANKAR A": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ARAV%20SHANKAR%20A.pdf",
+        "ARAVIND": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ARAVIND.pdf",
+        "ARJUN R": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ARJUN%20R.pdf",
+        "ARUSH P R": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ARUSH%20P%20R.pdf",
+        "ARYA A": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ARYA%20A.pdf",
+        "ASWANTH B": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ASWANTH%20B.pdf",
+        "ASWIN R": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ASWIN%20R.pdf",
+        "ASWIN V": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ASWIN%20V.pdf",
+        "ATHUL A M": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ATHUL%20A%20M.pdf",
+        "ATHUL A S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ATHUL%20A%20S.pdf",
+        "DEVA NAND PRADEEP": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/DEVA%20NAND%20PRADEEP.pdf",
+        "DEVA NARAYANAN": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/DEVA%20NARAYANAN.pdf",
+        "DEVANANDA P": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/DEVANANDA%20P.pdf",
+        "DEVA NAND M R": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/DEVA%20NAND%20M%20R.pdf",
+        "DIPIN D": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/DIPIN%20D.pdf",
+        "DRUV HARI M": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/DRUV%20HARI%20M.pdf",
+        "DYAN HARI M": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/DYAN%20HARI%20M.pdf",
+        "GURUMITHRAN D L": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/GURUMITHRAN%20D%20L.pdf",
+        "JANADATHAN D L": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/JANADATHAN%20D%20L.pdf",
+        "KASHINADH C S SREEKUTTY": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/KASHINADH%20C%20S%20SREEKUTTY.pdf",
+        "KASHINADH S N": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/KASHINADH%20S%20N.pdf",
+        "KASHINATH S S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/KASHINATH%20S%20S.pdf",
+        "MADHAV A S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/MADHAV%20A%20S.pdf",
+        "MANOJ": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/MANOJ.pdf",
+        "MIDHUN": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/MIDHUN.pdf",
+        "NIHARA R B": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/NIHARA%20R%20B.pdf",
+        "NIRANJAN B A": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/NIRANJAN%20B%20A.pdf",
+        "RAHUL KRISHNA": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/RAHUL%20KRISHNA.pdf",
+        "RAJATH KRISHNA": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/RAJATH%20KRISHNA.pdf",
+        "SABARI S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SABARI%20S.pdf",
+        "SANJAY SANTHOSH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SANJAY%20SANTHOSH.pdf",
+        "SANUSH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SANUSH.pdf",
+        "SARGA C S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SARGA%20C%20S.pdf",
+        "SIDHARTH P NAIR": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SIDHARTH%20P%20NAIR.pdf",
+        "SIDHARTH S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SIDHARTH%20S.pdf",
+        "SIVADATH B": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SIVADATH%20B.pdf",
+        "SIVARATH L": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SIVARATH%20L.pdf",
+        "SOORYANARAYANAN": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SOORYANARAYANAN.pdf",
+        "SREEHARI A M": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SREEHARI%20A%20M.pdf",
+        "SREEHARI G M": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/SREEHARI%20G%20M.pdf",
+        "THEJAS": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/THEJAS.pdf",
+        "VAISHNAV M C": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/VAISHNAV%20M%20C.pdf",
+        "VAISHNAV V": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/VAISHNAV%20V.pdf",
+        "VIDHUKRISHNAN P": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/VIDHUKRISHNAN%20P.pdf",
+        "VIGNESH S A": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/VIGNESH%20S%20A.pdf",
+        "DEVANAND V S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/DEVANAND%20V%20S.pdf",
+        "VAIBHAV V": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/VAIBHAV%20V.pdf",
+        "PRATHISH S": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/PRATHISH%20S.pdf",
+            // Add remaining student entries here...
+        };
+
+        function viewReport() {
+            const studentId = document.getElementById("studentId").value;
+            const pdfViewer = document.getElementById("pdfViewer");
+            const pdfSection = document.getElementById("pdfSection");
+
+            if (pdfFiles[studentId]) {
+                pdfViewer.src = pdfFiles[studentId];
+                pdfSection.style.display = "block"; // Show the PDF preview section
+            } else {
+                alert("No report available for the selected student.");
+                pdfSection.style.display = "none"; // Hide the PDF section if no match
+            }
+        }
+
+        function downloadReport() {
+            const studentId = document.getElementById("studentId").value;
+            if (pdfFiles[studentId]) {
+                // Create a temporary link element to trigger download
+                const link = document.createElement("a");
+                link.href = pdfFiles[studentId];
+                link.download = `${studentId}_PendingFeeReport.pdf`; // Suggested filename
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert("No report available for the selected student.");
+            }
+        }
+    </script>
+</body>
+</html>
