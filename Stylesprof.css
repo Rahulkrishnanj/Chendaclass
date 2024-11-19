@@ -172,7 +172,7 @@ h3 {
     background-color: #1f6022; /* Darker green on hover */
 }
 
-#view-report a {
+#view-report a, #pay-fees a  {
     color: white; /* White text inside the link */
     text-decoration: none; /* Remove underline */
 }
