@@ -1,0 +1,102 @@
+body {
+    font-family: bahnschrift;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    font-size: 20px;
+}
+form {
+    background: rgb(173, 226, 245);
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: auto;  
+}
+
+h1 {
+    font-size: 30px;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: Barlow;
+    font-size: 25px;
+    padding: 15px;
+    background-color: hsl(212, 90%, 25%);
+    border-radius: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: Barlow;
+    font-weight: bold;
+}
+button:hover {
+    background-color: #218838;
+}
+
+#studentForm button {
+    background-color: rgb(121, 2, 91);
+}
+.btn-container {
+    display: flex;
+    gap: 10px;
+}
+.btn-container button {
+    flex: 1;
+}
+#search-receipt {
+    font-size: 22px; /* Set the input text font size */
+    padding: 10px;
+    width: 100%;
+    color: rgb(93, 2, 47);
+    align-items: center;
+    font-family: bahnschrift;
+}
+
+/* Style for the placeholder text */
+#search-receipt::placeholder {
+    font-size: 17px; /* Increase the placeholder font size */
+    color: gray; /* Optional: Set the color */
+}
+
+input {
+    color: #063182;
+    font-size: 21px;
+    font-family: bahnschrift;
+}
+.btn-submit {
+        display: flex;
+        justify-content: space-between; /* Ensures equal space between buttons */
+        gap: 10px; /* Adds consistent gap between the buttons */
+}
+    
+.btn-submit button {
+        flex: 1;
+        padding: 10px;
+}
+#previous-receipt-container {
+        color: #a72e28;
+}
+
+option {
+        color: rgb(0, 25, 106); /* Optional: Set the color */
+}
