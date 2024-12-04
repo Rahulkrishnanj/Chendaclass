@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>s
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Receipt Entry Form</title>
@@ -9,47 +9,26 @@
 <body>
   <h1>Student Receipt Entry Form</h1>
   <form id="studentForm">
+    <!-- Search Container -->
     <div class="btn-container">
       <input type="number" id="search-receipt" placeholder="Enter Receipt No">
       <button type="button" onclick="searchByReceipt()">Search</button>
       <button type="button" onclick="clearSearch()">Clear</button>
     </div>
+    
+    <!-- Display Previous Receipt -->
     <div id="previous-receipt-container">
       <label>Previous Receipt:</label>
       <span id="previous-receipt">None</span>
     </div>
 
+    <!-- Input Fields -->
     <label for="receipt-no">Receipt No</label>
     <input type="number" id="receipt-no" required>
 
     <label for="name">Name</label>
     <select id="name" required>
       <option value="" selected disabled>Select Name</option>
-      <script>
-        const students = [
-          "ABHAYJITH", "ABHIJITH", "ABHIMANYU", "ABHINAV KIRAN", "ADIDEV S G", 
-          "ADIRATH", "ADITHAYAN A S", "ADITHYA A ABHILASH", "ADITHYAN A",
-          "ADITHYAN B S", "ADITHYAN R S", "ADITHYAN S M", "ADWAITH", "ADWAITH R P", 
-          "AKHIL B", "AKHIL SANTHOSH", "ANANTHAKRISHNAN S", "ANU", "ARAV SHANKAR A", 
-          "ARAVIND", "ARJUN R", "ARUSH P R", "ARYA A", "ASWANTH B", "ASWIN R", 
-          "ASWIN V", "ATHUL A M", "ATHUL A S", "DEVA NAND PRADEEP", "DEVA NARAYANAN", 
-          "DEVANANDA P", "DEVA NAND M R", "DIPIN D", "DRUV HARI M", "DYAN HARI M", 
-          "GURUMITHRAN D L", "JANADATHAN D L", "KASHINADH C S SREEKUTTY", 
-          "KASHINADH S N", "KASHINATH S S", "MADHAV A S", "MANOJ", "MIDHUN", 
-          "NIHARA R B", "NIRANJAN B A", "RAHUL KRISHNA", "RAJATH KRISHNA", "SABARI S", 
-          "SANJAY SANTHOSH", "SANUSH", "SARGA C S", "SIDHARTH P NAIR", "SIDHARTH S", 
-          "SIVADATH B", "SIVARATH L", "SOORYANARAYANAN", "SREEHARI A M", "SREEHARI G M", 
-          "THEJAS", "VAISHNAV M C", "VAISHNAV V", "VIDHUKRISHNAN P", "VIGNESH S A", 
-          "DEVANAND V S", "PRATHISH S", "VAIBHAV V"
-        ];
-        const nameDropdown = document.getElementById('name');
-        students.forEach(name => {
-          const option = document.createElement('option');
-          option.value = name;
-          option.textContent = name;
-          nameDropdown.appendChild(option);
-        });
-      </script>
     </select>
 
     <label for="month1">Month 1</label>
@@ -69,7 +48,7 @@
 
     <label for="admission-fee">Admission Fee</label>
     <select id="admission-fee" onchange="calculateTotals()">
-      <option value="" selected disabled>Select Fee</option>
+      <option value="" selected disabled>Select Admission Fee</option>
       <option value="200">200</option>
     </select>
 
@@ -89,28 +68,60 @@
     <label for="fund">Fund</label>
     <input type="number" id="fund" readonly>
 
+    <!-- Buttons -->
     <button type="button" onclick="submitForm()">Save Entry</button>
     <button type="button" onclick="clearForm()">Clear</button>
     <button type="button" onclick="viewExcelFile()">View Excel File</button>
   </form>
 
   <script>
-    const excelFileURL = 'https://github.com/Rahulkrishnanj/Chendaclass/blob/main/newform.xlsx';
-
-    const months = [
-      "May 2023", "Jun 2023", "Jul 2023", "Aug 2023", "Oct 2023", "Nov 2023", "Dec 2023",
-      "Jan 2024", "May 2024", "Jun 2024", "Jul 2024", "Aug 2024", "Sep 2024", "Oct 2024",
-      "Nov 2024", "Dec 2024", "Jan 2025", "Feb 2025", "Mar 2025", "Apr 2025", "May 2025",
-      "Jun 2025", "Jul 2025", "Aug 2025", "Sep 2025", "Oct 2025", "Nov 2025", "Dec 2025",
-      "Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026", "May 2026", "Jun 2026", "Jul 2026",
-      "Aug 2026", "Sep 2026", "Oct 2026", "Nov 2026", "Dec 2026"
+    // Student Names
+    const students = [
+      "ABHAYJITH", "ABHIJITH", "ABHIMANYU", "ABHINAV KIRAN", "ADIDEV S G", "ADIRATH",
+           "ADITHAYAN A S", "ADITHYA A ABHILASH", "ADITHYAN A", "ADITHYAN B S", "ADITHYAN R S",
+            "ADITHYAN S M", "ADWAITH", "ADWAITH R P", "AKHIL B", "AKHIL SANTHOSH",
+             "ANANTHAKRISHNAN S", "ANU", "ARAV SHANKAR A", "ARAVIND", "ARJUN R", "ARUSH P R",
+              "ARYA A", "ASWANTH B", "ASWIN R", "ASWIN V", "ATHUL A M", "ATHUL A S",
+               "DEVA NAND PRADEEP", "DEVA NARAYANAN", "DEVANANDA P", "DEVA NAND M R",
+                "DIPIN D", "DRUV HARI M", "DYAN HARI M", "GURUMITHRAN D L", "JANADATHAN D L",
+                 "KASHINADH C S SREEKUTTY", "KASHINADH S N", "KASHINATH S S", "MADHAV A S",
+                  "MANOJ", "MIDHUN", "NIHARA R B", "NIRANJAN B A", "RAHUL KRISHNA", "RAJATH KRISHNA",
+                   "SABARI S", "SANJAY SANTHOSH", "SANUSH", "SARGA C S", "SIDHARTH P NAIR",
+                    "SIDHARTH S", "SIVADATH B", "SIVARATH L", "SOORYANARAYANAN", "SREEHARI A M",
+                     "SREEHARI G M", "THEJAS", "VAISHNAV M C", "VAISHNAV V", "VIDHUKRISHNAN P",
+                      "VIGNESH S A", "DEVANAND V S", "PRATHISH S", "VAIBHAV V",
+      /* Add more names here */
     ];
 
-    function populateMonthDropdowns() {
-      ['month1', 'month2', 'month3'].forEach(id => {
+    // Months
+    const months = [
+      "May 2023", "Jun 2023", "Jul 2023", "Aug 2023", "Oct 2023", "Nov 2023", "Dec 2023",
+       "Jan 2024", "May 2024", "Jun 2024", "Jul 2024", "Aug 2024", "Sep 2024", "Oct 2024",
+        "Nov 2024", "Dec 2024", "Jan 2025", "Feb 2025", "Mar 2025", "Apr 2025", "May 2025",
+         "Jun 2025", "Jul 2025", "Aug 2025", "Sep 2025", "Oct 2025", "Nov 2025", "Dec 2025",
+          "Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026", "May 2026", "Jun 2026", "Jul 2026",
+           "Aug 2026", "Sep 2026", "Oct 2026", "Nov 2026", "Dec 2026", 
+      /* Add all months here */
+    ];
+
+    // Populate Dropdowns
+    function populateDropdowns() {
+      const nameDropdown = document.getElementById("name");
+      const monthDropdowns = ["month1", "month2", "month3"];
+
+      // Populate Names
+      students.forEach(name => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        nameDropdown.appendChild(option);
+      });
+
+      // Populate Months
+      monthDropdowns.forEach(id => {
         const dropdown = document.getElementById(id);
         months.forEach(month => {
-          const option = document.createElement('option');
+          const option = document.createElement("option");
           option.value = month;
           option.textContent = month;
           dropdown.appendChild(option);
@@ -118,18 +129,23 @@
       });
     }
 
-    populateMonthDropdowns();
+    populateDropdowns();
 
+    // Calculate Totals
     function calculateTotals() {
-      const admissionFee = parseInt(document.getElementById('admission-fee').value) || 0;
-      const monthsSelected = ['month1', 'month2', 'month3'].filter(id => document.getElementById(id).value).length;
+      const admissionFee = parseInt(document.getElementById("admission-fee").value) || 0;
+      const monthsSelected = ["month1", "month2", "month3"].filter(
+        id => document.getElementById(id).value
+      ).length;
+
       const totalFees = admissionFee + monthsSelected * 300;
       const fund = monthsSelected * 100 + (admissionFee > 0 ? 200 : 0);
 
-      document.getElementById('fee-amount').value = totalFees;
-      document.getElementById('fund').value = fund;
+      document.getElementById("fee-amount").value = totalFees;
+      document.getElementById("fund").value = fund;
     }
 
+    // Submit Form Data
     function submitForm() {
       const formData = {
         receiptNo: document.getElementById("receipt-no").value,
@@ -152,9 +168,7 @@
         .then(response => response.text())
         .then(data => {
           alert(data);
-          document.getElementById("studentForm").reset();
-          calculateTotals();
-          document.getElementById("previous-receipt").innerText = formData.receiptNo;
+          clearForm();
         })
         .catch(error => {
           console.error('Error:', error);
@@ -162,8 +176,49 @@
         });
     }
 
+    // Clear Form
     function clearForm() {
       document.getElementById("studentForm").reset();
-      document
+      document.getElementById("fee-amount").value = "";
+      document.getElementById("fund").value = "";
+    }
 
-     
+    // Search by Receipt
+    function searchByReceipt() {
+      const receiptNo = document.getElementById("search-receipt").value;
+
+      if (!receiptNo) {
+        alert("Please enter a Receipt No to search.");
+        return;
+      }
+
+      fetch(`http://localhost:3000/search-entry?receiptNo=${receiptNo}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data) {
+            document.getElementById("previous-receipt").innerText = data.receiptNo;
+            alert("Receipt found!");
+          } else {
+            alert("Receipt not found.");
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert("Error searching for receipt.");
+        });
+    }
+
+    // Clear Search
+    function clearSearch() {
+      document.getElementById("search-receipt").value = "";
+      document.getElementById("previous-receipt").innerText = "None";
+    }
+
+    // View Excel File
+    function viewExcelFile() {
+      const excelFileURL = 'https://github.com/Rahulkrishnanj/Chendaclass/blob/main/mkformdata.xlsx';
+      window.open(excelFileURL, '_blank');
+    }
+  </script>
+</body>
+</html>
