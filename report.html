@@ -183,18 +183,37 @@
 
         function viewReport() {
             const studentId = document.getElementById("studentId").value;
-            const pdfViewer = document.getElementById("pdfViewer");
             const pdfSection = document.getElementById("pdfSection");
+            const canvas = document.getElementById("pdfCanvas");
 
             if (pdfFiles[studentId]) {
-                pdfViewer.src = pdfFiles[studentId];
-                pdfSection.style.display = "block"; // Show the PDF preview section
+                const pdfUrl = pdfFiles[studentId];
+                pdfSection.style.display = "block"; // Show PDF section
+
+                // Use pdf.js to render the PDF
+                pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+                    pdf.getPage(1).then(function(page) {
+                        const context = canvas.getContext('2d');
+                        const viewport = page.getViewport({ scale: 1 });
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        page.render({
+                            canvasContext: context,
+                            viewport: viewport
+                        });
+                    });
+                }).catch(function(error) {
+                    console.error('Error loading PDF:', error);
+                    alert('Error loading PDF!');
+                });
             } else {
                 alert("No report available for the selected student.");
-                pdfSection.style.display = "none"; // Hide the PDF section if no match
+                pdfSection.style.display = "none"; // Hide PDF section if no match
             }
         }
 
+        // Function to download the PDF
         function downloadReport() {
             const studentId = document.getElementById("studentId").value;
             if (pdfFiles[studentId]) {
