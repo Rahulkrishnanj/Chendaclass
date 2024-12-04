@@ -165,7 +165,7 @@
         
      <!-- Navigation Bar -->
      <div class="navbar">
-        <a href="formnew.html">Form</a>
+        <a href="#" onclick="authenticate2()">Form</a>
         <a href="#" onclick="authenticate()">Fee Entry</a>
         <a href="contact.html">Contact</a>
         <a href="profexceldata.html">Profile</a>
@@ -357,6 +357,18 @@
                 if (username === "admin" && password === "1234") {
                     // Redirect to the Fee Entry page
                      window.location.href = "https://forms.gle/gSK6vwfyTCLYbxto7";
+                 } else {
+                     alert("Invalid Usename or Password. Please try again.");
+                 }
+    }
+        function authenticate2() {
+                 const username = prompt("Enter your username:");
+                const password = prompt("Enter your password:");
+
+                 // Validate username and password
+                if (username === "admin" && password === "1234") {
+                    // Redirect to the Fee Entry page
+                     window.location.href = "formnew.html";
                  } else {
                      alert("Invalid Usename or Password. Please try again.");
                  }
