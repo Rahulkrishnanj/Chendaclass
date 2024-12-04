@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalaakshethra</title>
+    <link rel="stylesheet" href="stylereport.css">
+    <link rel="stylesheet" href="navbar.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.17.269/pdf.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="profexceldata.html" class="left">Back</a>
+        <a href="index.html" class="right">Home</a>
+    </div>
+    <br>  
+    <h2>Chenda Class Student Portal</h2>
+    <br>
+
+    <div id="checkForm" class="input-name">
+        <h3>Student's Pending Fee Report PDF</h3>
+        <br>
+        <br>
+        <h4>Download Here</h4>
+        <h5>⇓</h5>
+        <form>
+            <label for="studentId">Select Student Name:</label>
+            <select id="studentId" required>
+                <option value="" disabled selected>Select Student Name</option>
+                <!-- Add all student options here -->
+                <option value="ABHAYJITH">ABHAYJITH</option>
+                <option value="ABHIJITH">ABHIJITH</option>
+                <option value="ABHIMANYU">ABHIMANYU</option>
+                <!-- Continue with all other students -->
+            </select>
+            <!-- Buttons for Download and View Report -->
+            <button type="button" onclick="downloadReport()">Download</button>
+            <button type="button" onclick="viewReport()">View Report</button>
+        </form>
+
+        <!-- PDF Preview Section -->
+        <div id="pdfSection" style="display: none;">
+            <h3 style="color: purple;">Pending Fee Report</h3>
+            <!-- PDF.js rendering -->
+            <canvas id="pdfCanvas" style="width: 100%; height: 500px; border: 1px solid #ccc; border-radius: 10px;"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const pdfFiles = {
+            "ABHAYJITH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ABHAYJITH.pdf",
+            "ABHIJITH": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ABHIJITH.pdf",
+            "ABHIMANYU": "https://raw.githubusercontent.com/Rahulkrishnanj/Chendaclass/Chenda/ABHIMANYU.pdf",
+            // Add all other students here
+        };
+
+        // Function to view the PDF report using pdf.js
+        function viewReport() {
+            const studentId = document.getElementById("studentId").value;
+            const pdfSection = document.getElementById("pdfSection");
+            const canvas = document.getElementById("pdfCanvas");
+
+            if (pdfFiles[studentId]) {
+                const pdfUrl = pdfFiles[studentId];
+                pdfSection.style.display = "block"; // Show PDF section
+
+                // Use pdf.js to render the PDF
+                pdfjsLib.getDocument(pdfUrl).promise.then(function(pdf) {
+                    pdf.getPage(1).then(function(page) {
+                        const context = canvas.getContext('2d');
+                        const viewport = page.getViewport({ scale: 1 });
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        page.render({
+                            canvasContext: context,
+                            viewport: viewport
+                        });
+                    });
+                }).catch(function(error) {
+                    console.error('Error loading PDF:', error);
+                    alert('Error loading PDF!');
+                });
+            } else {
+                alert("No report available for the selected student.");
+                pdfSection.style.display = "none"; // Hide PDF section if no match
+            }
+        }
+
+        // Function to download the PDF
+        function downloadReport() {
+            const studentId = document.getElementById("studentId").value;
+            if (pdfFiles[studentId]) {
+                // Create a temporary link element to trigger download
+                const link = document.createElement("a");
+                link.href = pdfFiles[studentId];
+                link.download = `${studentId}_PendingFeeReport.pdf`; // Suggested filename
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert("No report available for the selected student.");
+            }
+        }
+    </script>
+</body>
+</html>
