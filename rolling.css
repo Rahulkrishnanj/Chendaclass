@@ -6,7 +6,7 @@
 
     .banner-container {
       position: fixed;
-      bottom: 80px ;
+      top: 50px ;
       width: 100%;
       background-color: #007bff; /* Blue bar background */
       color: white;
@@ -16,7 +16,7 @@
     }
     .banner-container2 {
         position: fixed;
-        bottom: 115px ;
+        top: 85px ;
         width: 100%;
         background-color: #640367; /* Blue bar background */
         color: white;
