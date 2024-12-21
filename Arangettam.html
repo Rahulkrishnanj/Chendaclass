@@ -93,14 +93,57 @@
             font-family: Arial, Helvetica, sans-serif;
             font-size: 2rem;
         }
+        .navbar {
+    background-color: #004d99;
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex; /* Enable flexbox */
+    justify-content: space-between; /* Push items to opposite ends */
+    align-items: center; /* Align items vertically */
+}
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 ;
+    display: flex;
+}
+
+.navbar ul li {
+    margin: 0; /* Reset margins */
+}
+
+.navbar a {
+    display: inline-block;
+    color: rgb(255, 255, 255);
+    padding: 4px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    font-family: Bahnschrift SemiBold;
+}
+
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Back</a></li>
+            
+        </ul>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            
+        </ul>
+    </nav>
     <div class="container">
         <h1 id="head" >പഞ്ചാരിമേളം അരങ്ങേറ്റം</h1>
         <p class="event-details">
             <strong>Date:</strong><br>2025 February 21<br>
-            <strong>Venue:</strong><br>പുളിമാത്തൂർ ശ്രീ മഹാദേവ ക്ഷേത്രം
+            <strong>Venue:</strong><br>പുളിമാത്തൂർ ശ്രീ മഹാദേവ ക്ഷേത്രം<br>
+            <strong>Time:</strong><br>വൈകുന്നേരം 6 മണിക്ക്
+
             
         </p>
 
